@@ -20,7 +20,7 @@
   ],
   "nodecg": {
     "bundleDependencies": {
-      "tiltify-api": "^0.0.0"
+      "nodecg-tiltify": "^0.0.0"
     },
     "compatibleRange": "^1.1.1",
     "dashboardPanels": [
