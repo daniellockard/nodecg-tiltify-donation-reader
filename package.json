@@ -1,0 +1,36 @@
+{
+  "name": "tiltify-donation-reader",
+  "version": "0.0.0",
+  "description": "Tiltify Donation Reader",
+  "homepage": "",
+  "author": {
+    "name": "Danny Lockard",
+    "email": "danielhlockard@gmail.com",
+    "url": ""
+  },
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "bundleDependencies": {
+      "tiltify-api": "^0.0.0"
+    },
+    "compatibleRange": "^1.1.1",
+    "dashboardPanels": [
+      {
+        "name": "donation-reader",
+        "title": "Donation Reader",
+        "file": "donation-reader.html",
+        "fullbleed": true,
+        "headerColor": "#525F78"
+      }
+    ]
+  }
+}
