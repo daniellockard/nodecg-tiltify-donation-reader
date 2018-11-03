@@ -29,7 +29,7 @@
     </div>
 
 	<script>
-		var donationRep = nodecg.Replicant("donations", "tiltify-api");
+		var donationRep = nodecg.Replicant("donations", "nodecg-tiltify");
 		donationRep.on("change", function(newvalue, oldvalue) {
 			$("#donations").empty();
 			for (let i = 0; i < newvalue.length; i++) {
