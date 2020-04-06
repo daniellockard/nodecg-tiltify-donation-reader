@@ -34,10 +34,10 @@
     </div>
 
 	<script>
-    var donations = [];
+		var donations = [];
 		var donationRep = nodecg.Replicant("donations", "nodecg-tiltify");
 		donationRep.on("change", function(newvalue, oldvalue) {
-      donations = newvalue;
+			donations = newvalue;
 			$("#donations").empty();
 			for (let i = 0; i < newvalue.length; i++) {
 				if (newvalue[i].read) {
@@ -57,12 +57,12 @@
 				});
 			}
 		});
-    $("#clear-donations").click(function() {
-      $("#donations").empty();
-      for (let i = 0; i < donations.length; i++) {
-        donations[i].read = true;
-      }
-    });
+		$("#clear-donations").click(function() {
+			$("#donations").empty();
+			for (let i = 0; i < donations.length; i++) {
+				donations[i].read = true;
+			}
+		});
 	</script>
 </body>
 </html>
