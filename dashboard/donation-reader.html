@@ -58,9 +58,12 @@
 			}
 		});
 		$("#clear-donations").click(function() {
-			$("#donations").empty();
-			for (let i = 0; i < donations.length; i++) {
-				donations[i].read = true;
+			var confirmClear = confirm("Are you sure you want to clear all donations?")
+			if (confirmClear == true) {
+				$("#donations").empty();
+				for (let i = 0; i < donations.length; i++) {
+					donations[i].read = true;
+				}
 			}
 		});
 	</script>
