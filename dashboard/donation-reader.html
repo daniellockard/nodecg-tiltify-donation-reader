@@ -25,12 +25,19 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 </head>
 <body>
+    <div class="col-sm">
+      <p>
+        <button class="btn teal block" id="clear-donations" href="#" role="button">Clear Donation Queue</button> 
+      </p>
+    </div>
     <div class="col-sm-12" id="donations">
     </div>
 
 	<script>
+    var donations = [];
 		var donationRep = nodecg.Replicant("donations", "nodecg-tiltify");
 		donationRep.on("change", function(newvalue, oldvalue) {
+      donations = newvalue;
 			$("#donations").empty();
 			for (let i = 0; i < newvalue.length; i++) {
 				if (newvalue[i].read) {
@@ -50,6 +57,12 @@
 				});
 			}
 		});
+    $("#clear-donations").click(function() {
+      $("#donations").empty();
+      for (let i = 0; i < donations.length; i++) {
+        donations[i].read = true;
+      }
+    });
 	</script>
 </body>
 </html>
