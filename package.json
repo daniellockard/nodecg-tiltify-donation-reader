@@ -25,7 +25,7 @@
     "compatibleRange": "^1.1.1",
     "dashboardPanels": [
       {
-        "name": "donation-reader",
+        "name": "Donation Reader",
         "title": "Donation Reader",
         "file": "donation-reader.html",
         "fullbleed": true,
