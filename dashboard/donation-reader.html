@@ -52,17 +52,14 @@
 					row.find("#message").text("No Message");
 				}
 				row.find("#button-" + newvalue[i].id).click(function() {
-					row.remove();
-					newvalue[i].read = true;
+          nodecg.sendMessageToBundle('mark-donation-as-read', 'nodecg-tiltify', newvalue[i]);
 				});
 			}
 		});
 		$("#clear-donations").click(function() {
       var confirmClear = confirm("Are you sure you want to clear all donations?")
       if (confirmClear == true) {
-        $.post('/nodecg-tiltify/markallread', function(data){
-          console.log(data);
-        });
+        nodecg.sendMessageToBundle('clear-donations', 'nodecg-tiltify');
       }
 		});
 	</script>
