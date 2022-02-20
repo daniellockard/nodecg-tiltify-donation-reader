@@ -14,6 +14,9 @@
 			padding: 2px 16px;
 		}
 		.teal,.hover-teal:hover{color:#fff!important;background-color:#009688!important}
+		.gold {
+			background-color: #fcad23 !important;
+		}
 		.btn,.button{border:none;display:inline-block;padding:8px 16px;vertical-align:middle;overflow:hidden;text-decoration:none;color:inherit;background-color:inherit;text-align:center;cursor:pointer;white-space:nowrap}
 		.block {
 			display: block;
@@ -25,6 +28,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 </head>
 <body>
+    <div class="col-sm-12" id="goals"></div>
     <div class="col-sm">
       <p>
         <button class="btn teal block" id="clear-donations" href="#" role="button">Clear Donation Queue</button> 
@@ -35,7 +39,33 @@
 
 	<script>
 		var donations = [];
+		var goals = [];
 		var donationRep = nodecg.Replicant("donations", "nodecg-tiltify");
+		var goalRep = nodecg.Replicant("incentives", "nodecg-starbar");
+		NodeCG.waitForReplicants(goalRep).then(()=>{
+			goalRep.on("change", function(newvalue, oldvalue) {
+				goals = [...goalRep.value]
+				goals = goals.map((goal,i)=>{
+					goal.id = i
+					return goal;
+				})
+				goals = goals.filter((goal)=>(goal.type === "milestone" || goal.type === "goal") && goal.shown)
+				$("#goals").empty();
+				for (let i = 0; i < goals.length; i++) {
+					if (goals[i].read) {
+						continue;
+					}
+					$("#goals").append("<div class=\"card\" id=\"goal-row-" + goals[i].id + "\"><div class=\"container\" style=\"border: rgb(82, 95, 120); border-radius: 12px; border-style: groove;\"><h2 id=\"name\"></h2><p id=\"message\"></p><p><button class=\"btn gold block\" id=\"goal-button-" + goals[i].id + "\" href=\"#\" role=\"button\">Mark as complete</button></p></div></div>");
+					const row = $("#goal-row-" + goals[i].id);
+					row.find("#name").text(`${goals[i].what} ${goals[i].type} achieved ($${goals[i].amount})`);
+					row.find("#goal-button-" + goals[i].id).click(function() {
+						const goalRepTemp = [...goalRep.value]
+						goalRepTemp.splice(goals[i].id, 1);
+						goalRep.value = goalRepTemp
+					});
+				}
+			});
+		});
 		donationRep.on("change", function(newvalue, oldvalue) {
 			donations = newvalue;
 			$("#donations").empty();
