@@ -1,6 +1,6 @@
 {
   "name": "nodecg-tiltify-donation-reader",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Tiltify Donation Reader",
   "homepage": "",
   "author": {
@@ -20,7 +20,7 @@
   ],
   "nodecg": {
     "bundleDependencies": {
-      "nodecg-tiltify": "^0.0.0"
+      "nodecg-tiltify": "^1.0.0"
     },
     "compatibleRange": "^1.1.1",
     "dashboardPanels": [
